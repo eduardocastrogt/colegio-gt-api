@@ -1,10 +1,14 @@
-import express, { Application, Request, Response } from 'express'
+import express, { Application } from 'express'
 import helmet from 'helmet'
 import dotenv from 'dotenv'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 
+// Importación de rutas
 import generoRouter from '../routes/generoRoutes'
+import estadoAlumnoRoute from '../routes/estadosAlumnoRoutes'
+import alumnoRouter from '../routes/alumnosRoutes'
+import cursosRouter from '../routes/cursosRoutes'
 dotenv.config()
 
 export class App {
@@ -44,12 +48,14 @@ export class App {
   }
 
   private routes (): void {
-    this.app.get('/', (_req: Request, res: Response) => {
-      res.send('Hello World')
-    })
-
     // Obtener generos
     this.app.use(`/${this.version}/${this.prefixApi}`, generoRouter)
+    // Estados en los que puede estar un alumno
+    this.app.use(`/${this.version}/${this.prefixApi}`, estadoAlumnoRoute)
+    // Rutas de alumnos
+    this.app.use(`/${this.version}/${this.prefixApi}`, alumnoRouter)
+    // Rutas de cursos
+    this.app.use(`/${this.version}/${this.prefixApi}`, cursosRouter)
   }
 
   async start (): Promise<void> {
