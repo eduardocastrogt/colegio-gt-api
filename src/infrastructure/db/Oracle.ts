@@ -47,6 +47,21 @@ class Oracle {
     }
   }
 
+  async execute (query: string, params: any): Promise<{ status: string, message: string, rowsAffected?: number, data?: any }> {
+    try {
+      this.connection = await this.obtenerConexion()
+
+      const result = await this.connection.execute(query, params, { autoCommit: true })
+      const rowsAffected = result.rowsAffected
+      await this.connection.close()
+
+      return { status: 'success', message: 'Query ejecutado exitosamente', rowsAffected, data: result.outBinds }
+    } catch (err) {
+      console.error('Error al ejecutar query:', err)
+      return { status: 'error', message: 'Error al ejecutar query' }
+    }
+  }
+
   async executeProcedure (procedureName: string, params: any): Promise<{ status: string, message: string }> {
     try {
       await this.connection.execute(procedureName, params)
