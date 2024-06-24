@@ -1,0 +1,87 @@
+ª   .env
+ª   .gitignore
+ª   .mocharc.json
+ª   .nycrc
+ª   estructura_repositorio.txt
+ª   package-lock.json
+ª   package.json
+ª   README.md
+ª   tsconfig.json
+ª   
++---db
+ª       tablas.sql
+ª       
++---node_modules                       
++---src
+ª   ª   app.ts
+ª   ª   oracle.ts
+ª   ª   
+ª   +---domain
+ª   ª   +---frameworks-drivers
+ª   ª   ª       App.ts
+ª   ª   ª       Index.ts
+ª   ª   ª       
+ª   ª   +---implementations
+ª   ª   ª   +---alumno
+ª   ª   ª   ª       AlumnoImp.ts
+ª   ª   ª   ª       
+ª   ª   ª   +---curso
+ª   ª   ª   ª       CursoImp.ts
+ª   ª   ª   ª       EstadoCursoImp.ts
+ª   ª   ª   ª       
+ª   ª   ª   +---estado-alumno
+ª   ª   ª   ª       EstadoAlumnoImp.ts
+ª   ª   ª   ª       
+ª   ª   ª   +---genero
+ª   ª   ª           GeneroImp.ts
+ª   ª   ª           
+ª   ª   +---models
+ª   ª   ª   +---data
+ª   ª   ª   ª       Alumno.ts
+ª   ª   ª   ª       Asignacion.ts
+ª   ª   ª   ª       Curso.ts
+ª   ª   ª   ª       EstadoAlumno.ts
+ª   ª   ª   ª       EstadoAsignacion.ts
+ª   ª   ª   ª       EstadoCurso.ts
+ª   ª   ª   ª       Genero.ts
+ª   ª   ª   ª       Trimestre.ts
+ª   ª   ª   ª       
+ª   ª   ª   +---interfaces
+ª   ª   +---routes
+ª   ª   ª       alumnosRoutes.ts
+ª   ª   ª       cursosRoutes.ts
+ª   ª   ª       estadosAlumnoRoutes.ts
+ª   ª   ª       generoRoutes.ts
+ª   ª   ª       
+ª   ª   +---use-cases
+ª   ª       +---alumno
+ª   ª       ª       alumnoUseCase.ts
+ª   ª       ª       
+ª   ª       +---curso
+ª   ª       ª       cursoUseCase.ts
+ª   ª       ª       estadoCursoUseCase.ts
+ª   ª       ª       
+ª   ª       +---estado-alumno
+ª   ª       ª       estadoAlumnoUseCase.ts
+ª   ª       ª       
+ª   ª       +---genero
+ª   ª               generoUseCase.ts
+ª   ª               
+ª   +---infrastructure
+ª   ª   +---db
+ª   ª   ª       Mongo.ts
+ª   ª   ª       Oracle.ts
+ª   ª   ª       
+ª   ª   +---logs
+ª   ª           Logger.ts
+ª   ª           
+ª   +---utils
+ª       ª   formatoFechaNacimiento.ts
+ª       ª   mapeoAlumnos.ts
+ª       ª   
+ª       +---validations
+ª               validacionFormatoFecha.ts
+ª               validarCreacionAlumno.ts
+ª               validarEmail.ts
+ª               
++---test
