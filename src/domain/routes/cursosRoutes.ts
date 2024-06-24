@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import EstadoCursoImp from '../implementations/curso/estadoCursoImp'
+import EstadoCursoImp from '../implementations/curso/EstadoCursoImp'
 import CursoImp from '../implementations/curso/CursoImp'
 
 const estadoCursoImp = new EstadoCursoImp()
@@ -186,6 +186,138 @@ cursosRouter.get('/curso/estados-asignacion', (req: Request, res: Response) => {
 cursosRouter.get('/curso/trimestres', (req: Request, res: Response) => {
   void (async () => {
     await cursoImp.obtenerTrimestresCursoHttp(req, res)
+  })()
+})
+
+// Generar swagger para este endpoint, incluir ejemplo de respuesta y modelos de datos
+/**
+ * @swagger
+ * /v1/api/curso/asignacion:
+ *   post:
+ *     summary: Crear una asignación
+ *     tags: [Asignaciones]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               curso:
+ *                 type: number
+ *               trimestre:
+ *                 type: number
+ *               alumno:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     asignacionId:
+ *                       type: number
+ *             example:
+ *               message: 'Asignación creada'
+ *               data:
+ *                 asignacionId: 1
+ */
+cursosRouter.post('/curso/asignacion', (req: Request, res: Response) => {
+  void (async () => {
+    await cursoImp.crearAsignacionHttp(req, res)
+  })()
+})
+
+// Generar swagger para este endpoint, incluir ejemplo de respuesta y modelos de datos
+/**
+ * @swagger
+ * /v1/api/curso/asignacion:
+ *   get:
+ *     summary: Obtener todas las asignaciones
+ *     tags: [Asignaciones]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: number
+ *                   curso:
+ *                     type: string
+ *                   alumno:
+ *                     type: string
+ *                   trimestre:
+ *                     type: string
+ *                   estadoAsignacion:
+ *                     type: string
+ *             example:
+ *               - id: 1
+ *                 curso: 'Matemáticas'
+ *                 alumno: 'Juan Pérez'
+ *                 trimestre: '12024'
+ *                 estadoAsignacion: 'Activo'
+ *               - id: 2
+ *                 curso: 'Español'
+ *                 alumno: 'María López'
+ *                 trimestre: '22024'
+ *                 estadoAsignacion: 'Activo'
+ */
+cursosRouter.get('/curso/asignacion', (req: Request, res: Response) => {
+  void (async () => {
+    await cursoImp.obtenerAsignacionesHttp(req, res)
+  })()
+})
+
+// Generar swagger para este endpoint, incluir ejemplo de respuesta y modelos de datos
+/**
+ * @swagger
+ * /v1/api/curso/asignacion/{id}:
+ *   patch:
+ *     summary: Actualizar el estado de una asignación
+ *     tags: [Asignaciones]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: number
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               estado:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *             example:
+ *               message: 'Estado de asignación actualizado'
+ */
+cursosRouter.patch('/curso/asignacion/:id', (req: Request, res: Response) => {
+  void (async () => {
+    await cursoImp.actualizarEstadoAsignacionHttp(req, res)
   })()
 })
 
