@@ -3,6 +3,7 @@ import helmet from 'helmet'
 import dotenv from 'dotenv'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import cors from 'cors'
 
 // Importación de rutas
 import generoRouter from '../routes/generoRoutes'
@@ -45,6 +46,7 @@ export class App {
     this.app.use(express.urlencoded({ extended: true }))
     // Configuración de headers de seguridad, referencia: https://www.npmjs.com/package/helmet
     this.app.use(helmet())
+    this.app.use(cors())
   }
 
   private routes (): void {
