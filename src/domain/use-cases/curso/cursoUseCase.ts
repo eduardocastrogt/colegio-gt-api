@@ -108,7 +108,7 @@ abstract class CursoUseCase {
   }
 
   async crearAsignacion (asignacion: Asignacion): Promise<number> {
-    const { alumno, curso, trimestre, estadoAsignacion = 'A' } = asignacion
+    const { alumno, curso, trimestre, estadoAsignacion = 'P' } = asignacion
 
     const insertQuery = `
       INSERT INTO asignacion_curso (curso_id, alumno_id, trimestre_curso_id, estado_asignacion_id)
